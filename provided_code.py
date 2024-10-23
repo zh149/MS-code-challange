@@ -1,10 +1,8 @@
-# python -m pip install requests
-
 import json
 import requests
 
-URL = "http://fx-trading-game.westeurope.azurecontainer.io:443"
-TRADER_ID = "your_trader_id_here"
+URL = "http://fx-trading-game-leicester-challenge.westeurope.azurecontainer.io:443/"
+TRADER_ID = "OV6gzco2UTm5hanPUEuDZ8NBN08BGlsT"
 
 
 class Side:
@@ -17,6 +15,8 @@ def get_price():
     res = requests.get(api_url)
     if res.status_code == 200:
         return json.loads(res.content.decode('utf-8'))["price"]
+    else:
+        print("status code: ", res.status_code)
     return None
 
 
@@ -33,4 +33,4 @@ def trade(trader_id, qty, side):
 
 if __name__ == '__main__':
     print("Expected to trade at:" + str(get_price()))
-    print("Effectively traded at:" + trade(TRADER_ID, 100, Side.BUY))
+    # print("Effectively traded at:" + trade(TRADER_ID, 100, Side.BUY))
